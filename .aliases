@@ -1,0 +1,63 @@
+# Dir navigation.
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias ~='cd ~'
+alias sites='cd ~/Sites'
+
+# Detect which `ls` flavor is in use.
+if ls --color > /dev/null 2>&1; then # GNU `ls`.
+  colorflag="--color"
+else # OS X `ls`.
+  colorflag="-G"
+fi
+
+# List all files colorized in long format.
+alias ll="ls -lF ${colorflag}"
+
+# List all files colorized in long format, including dot files.
+alias la="ls -laF ${colorflag}"
+
+# List only directories.
+alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
+
+# Always use color output for `ls`.
+#alias ls="command ls ${colorflag}"
+
+alias pull='git checkout master && git pull origin master && git checkout live && git pull origin live && git checkout master && git merge live'
+
+alias sendlive='git checkout live && git merge master && git checkout master && git push origin live'
+
+alias fixperms='sudo find . -type d -exec chmod 775 {} \; && sudo find . -type f -exec chmod 664 {} \; && sudo chown -R www-data .'
+
+alias gs='git status'
+alias ga='git add -A'
+alias gc='gitmoji -c'
+
+alias clean-branches='git fetch -a && git checkout master && git branch -r --merged | grep -v master | grep -v live | grep origin | sed "s/origin\///" | xargs -n 1 git push --delete origin'
+
+# Laravel
+
+artisan() {
+  if [ -f bin/artisan ]; then
+    php bin/artisan "$@"
+  else
+    php artisan "$@"
+  fi
+}
+
+alias serve='artisan serve'
+alias tinker='artisan tinker'
+
+# Misc PHP
+
+t() {
+  if [ -f vendor/bin/phpunit ]; then
+    vendor/bin/phpunit "$@"
+  else
+    phpunit "$@"
+  fi
+}
+
+alias cu='composer update'
+alias ci='composer install'
