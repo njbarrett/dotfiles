@@ -36,6 +36,8 @@ alias gc='gitmoji -c'
 
 alias clean-branches='git fetch -a && git checkout master && git branch -r --merged | grep -v master | grep -v live | grep origin | sed "s/origin\///" | xargs -n 1 git push --delete origin'
 
+alias cleardns='sudo killall -HUP mDNSResponder'
+
 # Laravel
 
 artisan() {
@@ -61,3 +63,4 @@ t() {
 
 alias cu='composer update'
 alias ci='composer install'
+alias ar='sudo apachectl -k restart'

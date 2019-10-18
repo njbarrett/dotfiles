@@ -64,6 +64,8 @@
 	excludesfile = /Users/nick/.gitignore_global
 	editor = nano
 	fileMode = false
+	name = Nick Barrett
+	email = njbarrett7@gmail.com
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path =
@@ -72,3 +74,6 @@
 	trustExitCode = true
 [commit]
 	template = /Users/nick/.stCommitMsg
+[credential]
+	UseHttpPath = true
+	helper = "!aws codecommit credential-helper "
